@@ -54,7 +54,7 @@
         <h3>- Devloped by Chandan Roy</h3>
 
         <label for="lang">Select Language:</label>
-        <select name="language" id="lang">
+        <select  id="lang">
             <option selected value="Hindi">Hindi</option>
             <option value="English">English</option>
             <option value="French">French</option>
@@ -64,18 +64,18 @@
         <p id="msg"></p>
     </div>
 
-    <script> 
+    <script>
         const lang = document.getElementById('lang');
-        
-        const getMsg = async () => {
+
+        const callAPI = async () => {
             var language = lang.value;
-            let data = await fetch("/hello?language=" + language);
-            data = await data.json();
-            document.getElementById("msg").textContent = data.message.msgText;
+            let res = await fetch("/hello?language=" + language);
+            resData = await res.json();
+            document.getElementById("msg").textContent = resData.message.msgText;
         }
 
-        lang.addEventListener('change', getMsg)
-        getMsg();
+        lang.addEventListener('change', callAPI)
+        callAPI();
     </script>
 </body>
 </html>
