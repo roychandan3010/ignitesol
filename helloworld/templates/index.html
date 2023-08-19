@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignite Solution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        #container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #0040a0;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #007bff;
+            font-size: 24px;
+        }
+
+        #msg {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Ignite Solution Coding Round 2 - <b>Hello World</b> API</h1>
+        <h3>- Devloped by Chandan Roy</h3>
+
+        <label for="lang">Select Language:</label>
+        <select name="language" id="lang">
+            <option selected value="Hindi">Hindi</option>
+            <option value="English">English</option>
+            <option value="French">French</option>
+        </select>
+
+        <h2>Response:</h2>
+        <p id="msg"></p>
+    </div>
+
+    <script> 
+        const lang = document.getElementById('lang');
+        
+        const getMsg = async () => {
+            var language = lang.value;
+            let data = await fetch("/hello?language=" + language);
+            data = await data.json();
+            document.getElementById("msg").textContent = data.message.msgText;
+        }
+
+        lang.addEventListener('change', getMsg)
+        getMsg();
+    </script>
+</body>
+</html>
